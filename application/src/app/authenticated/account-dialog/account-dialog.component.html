@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Account</h2>
+<mat-dialog-content>
+  <div class="paragraph" *ngIf="isRequired">
+    You need to create at least one account.
+  </div>
+  <div>
+      <form #accountForm="ngForm">
+        <mat-form-field>
+          <input 
+            type="text"
+            required
+            matInput
+            placeholder="Account name"
+            [(ngModel)]="account.name"
+            name="accountName">
+        </mat-form-field>
+        <mat-form-field>
+          <span matPrefix>$ &nbsp;</span>
+          <input 
+            type="number"
+            required
+            pattern="^[0-9]+(\.[0-9]?[0-9]?)?$"
+            matInput
+            placeholder="Monthly allowance"
+            [(ngModel)]="account.allowance"
+            name="accountAllowance">
+        </mat-form-field>
+      </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close *ngIf="!isRequired">Close</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button mat-button [disabled]="!accountForm.form.valid || isSaving" (click)="save()">{{buttonLabel}}</button>
+</mat-dialog-actions>

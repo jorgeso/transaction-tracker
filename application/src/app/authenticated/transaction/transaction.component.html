@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="allowance-container">
+    allowance leftover: ${{transaction.allowance | number:'1.2-2'}}
+  </div>
+  <div class="trasaction-container">
+    <div class="transaction">
+      <div>
+        <form #transactionForm="ngForm">
+            <mat-form-field class="transaction-amount">
+              <span matPrefix>$ &nbsp;</span>
+              <input 
+                type="number"
+                required
+                pattern="^[0-9]+(\.[0-9]?[0-9]?)?$"
+                matInput
+                [disabled]="isSaving"
+                placeholder="Transaction amount"
+                [(ngModel)]="transaction.value"
+                name="transactionAmount">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select
+                required
+                [(ngModel)]="transaction.type"
+                name="transactionType"
+                [disabled]="isSaving"
+                placeholder="Transaction type">
+                <mat-option *ngFor="let type of account.transactionTypes" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+              
+            <div class="submit">
+                <button
+                  mat-raised-button
+                  (click)="saveTransaction()"
+                  [disabled]="!transactionForm.form.valid"
+                  color="primary">
+                  {{buttonLabel}}
+              </button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
