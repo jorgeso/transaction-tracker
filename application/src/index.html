@@ -4,7 +4,10 @@
   <meta charset="utf-8">
   <title>Transaction Tracker</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content = "width=device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no" />
+  <meta name="Transactions" content="onlyWebPro" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
@@ -25,5 +28,35 @@
 </head>
 <body>
   <app-root></app-root>
+  <script type="text/javascript">
+    (function addLoadingPage(){
+      let div = document.createElement('div');
+        div.id = "loading-element";
+        div.style.position = "fixed";
+        div.style.top = "0";
+        div.style.left = "0";
+        div.style.height = "100%";
+        div.style.overflow = "visible";
+        div.style.width = "100%";
+        div.style["z-index"] = "10000";
+        div.style["background-color"] = "white";
+        
+        let image = document.createElement('img');
+        image.src = "/assets/images/loading.svg";
+        image.id = "loading-element-img";
+        image.style.position = "fixed";
+        image.style.top = "50%";
+        image.style.left = "50%";
+        image.style.height = "auto";
+        image.style.width = "160px";
+        div.style["z-index"] = "10001";
+        image.style["margin-top"] = "-80px";
+        image.style["margin-left"] = "-80px";
+
+        div.appendChild(image);
+
+        document.getElementsByTagName('body')[0].appendChild(div);
+    })();
+  </script>
 </body>
 </html>

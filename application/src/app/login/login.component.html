@@ -1,3 +1,69 @@
 <div class="container">
-  <button mat-raised-button color="primary" (click)="login()">Login with Google</button>
+  <form #loginForm="ngForm" *ngIf="!isResetting">
+    <div>
+      <mat-form-field class="transaction-amount">
+        <input 
+          type="email"
+          required
+          matInput
+          [disabled]="isLoading"
+          placeholder="Email"
+          [(ngModel)]="user.email"
+          name="userEmail">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input 
+          type="password"
+          required
+          matInput
+          [disabled]="isLoading"
+          placeholder="Password"
+          [(ngModel)]="user.password"
+          name="userPassword">
+      </mat-form-field>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        (click)="login()"
+        [disabled]="!loginForm.form.valid || isLoading"
+        color="primary">
+        {{loginButtonLabel}}
+      </button>&nbsp;
+      <a mat-button (click)="setToReset()">
+        Reset password
+      </a>
+    </div>
+  </form>
+  <form #resetForm="ngForm" *ngIf="isResetting">
+    <div>
+      <mat-form-field class="transaction-amount">
+        <input 
+          type="email"
+          required
+          matInput
+          [disabled]="isLoading"
+          placeholder="Email"
+          [(ngModel)]="user.email"
+          name="userEmail">
+      </mat-form-field>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        (click)="sendPasswordResetEmail()"
+        [disabled]="!resetForm.form.valid || isLoading"
+        color="primary">
+        {{resetButtonLabel}}
+      </button>&nbsp;
+      <a mat-button (click)="cancelReset()">
+        Back to login
+      </a>
+    </div>
+  </form>
+  <div class="message-container">
+    {{message}}
+  </div>
 </div>

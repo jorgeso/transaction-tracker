@@ -14,6 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { AccountService } from './authenticated/account/account.service';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { DomUtilitiesService } from './shared/dom-utilities.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -28,13 +32,17 @@ import { AngularFireDatabase } from 'angularfire2/database';
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatInputModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     AuthAppGuard,
     AngularFireAuth,
     AccountService,
-    AngularFireDatabase
+    AngularFireDatabase,
+    DomUtilitiesService
   ],
   bootstrap: [AppComponent]
 })

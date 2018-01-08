@@ -1,0 +1,8 @@
+Zip application:
+
+Get-ChildItem "C:\Users\jneyr\Projects\transaction-tracker\application" | where { $_.Name -notin @("node_modules")} | Compress-Archive -DestinationPath "C:\Users\jne
+yr\Projects\transaction-tracker\application.zip" -Update
+
+deploy to azure:
+
+az webapp deployment source config-zip --resource-group financial-tracker --name financial-tracker --src clouddrive/application.zip

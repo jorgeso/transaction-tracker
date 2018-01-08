@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 import { User } from '../../user/user.model';
 import { MatDialog } from '@angular/material';
 import { AccountDialogComponent } from '../account-dialog/account-dialog.component';
+import { DomUtilitiesService } from '../../shared/dom-utilities.service';
 
 @Component({
   selector: 'app-core',
@@ -22,7 +23,8 @@ export class CoreComponent implements OnInit {
     private router: Router,
     public fbAuth: AngularFireAuth,
     private db: AngularFireDatabase,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private domUtilitiesService: DomUtilitiesService
   ) {
     this.isSideNavOpen = false;
   }
@@ -44,11 +46,7 @@ export class CoreComponent implements OnInit {
 
     })
 
-    var loadingDiv = document.getElementById("loading-element");
-
-    if (loadingDiv){
-      document.getElementsByTagName('body')[0].removeChild(loadingDiv);
-    }
+    this.domUtilitiesService.removeFullPageLoading();
 
     this.checkAccounts();
   }

@@ -1,18 +1,19 @@
 <mat-sidenav-container>
     <mat-sidenav
-        [(opened)]="isSideNaveOpened"
+        [(opened)]="isSideNavOpen"
         fixedInViewport="true"
         fixedTopGap="0"
         fixedBottomGap="0">
         <mat-nav-list>
-            <a mat-list-item [routerLink]="['/account']" (click)="isSideNaveOpened = false">Account</a>
+            <a mat-list-item [routerLink]="['/transaction']" (click)="isSideNavOpen = false">Add Transaction</a>
+            <a mat-list-item [routerLink]="['/account']" (click)="isSideNavOpen = false">Account</a>
             <a mat-list-item (click)="logout()">Logout</a>
         </mat-nav-list>             
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="core-container">
             <div class="top-container">
-                <button mat-icon-button color="primary" (click)="isSideNaveOpened = !isSideNaveOpened">
+                <button mat-icon-button color="primary" (click)="isSideNavOpen = !isSideNavOpen">
                     <mat-icon aria-label="Open side navigation">menu</mat-icon>
                 </button>
             </div>
